@@ -2,7 +2,7 @@ use std::env;
 use dotenv::dotenv;
 use reqwest::Client;
 use reqwest::header::{HeaderMap, HeaderValue};
-use crate::models::general::llm::Message;
+use crate::models::general::llm::{ChatCompletion, Message};
 
 //Call large language model (i.e. GPT-4)
 pub async fn call_gpt(messages:Vec<Message>) {
@@ -37,4 +37,11 @@ pub async fn call_gpt(messages:Vec<Message>) {
 		.default_headers(headers)
 		.build()
 		.unwrap();
+
+	//Create chat completion
+	let chat_completion = ChatCompletion {
+		model: "gpt-4".to_string(),
+		messages,
+		temperature:0.1
+	};
 }
