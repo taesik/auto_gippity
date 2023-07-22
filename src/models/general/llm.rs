@@ -4,5 +4,4 @@ use serde::Serialize;
 pub struct Message {
 	pub role: String,
 	pub content: String,
-
 }

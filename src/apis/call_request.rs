@@ -1,5 +1,6 @@
 use std::env;
 use dotenv::dotenv;
+use reqwest::Client;
 use reqwest::header::{HeaderMap, HeaderValue};
 use crate::models::general::llm::Message;
 
@@ -30,4 +31,10 @@ pub async fn call_gpt(messages:Vec<Message>) {
 		"OpenAI-Organization",
 		HeaderValue::from_str(api_org.as_str()).unwrap()
 	);
+
+	//Create Client
+	let client = Client::builder()
+		.default_headers(headers)
+		.build()
+		.unwrap();
 }
